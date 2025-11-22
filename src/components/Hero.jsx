@@ -1,42 +1,23 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const Hero = ({ universityName, tagline, backgroundImage }) => {
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start start", "end start"]
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
     return (
-        <div ref={ref} className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div className="relative h-screen w-full flex items-center justify-center overflow-hidden">
             {/* Background Image with Strong Overlay */}
-            <motion.div 
-                className="absolute inset-0"
-                style={{ y }}
-            >
+            <div className="absolute inset-0">
                 <img
                     src={backgroundImage}
                     alt="University Campus"
                     loading="eager"
                     className="absolute inset-0 w-full h-full object-cover"
-                    style={{
-                        transform: 'translateZ(0)',
-                        WebkitTransform: 'translateZ(0)',
-                    }}
                 />
                 {/* Strong Black Overlay for Readability */}
                 <div className="absolute inset-0 bg-black/60"></div>
-            </motion.div>
+            </div>
 
             {/* Hero Content */}
-            <motion.div
-                style={{ opacity }}
-                className="relative z-10 px-4 sm:px-6 max-w-5xl mx-auto text-center"
-            >
+            <div className="relative z-10 px-4 sm:px-6 max-w-5xl mx-auto text-center">
                 {/* Elegant Title */}
                 <motion.h1
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -73,7 +54,7 @@ const Hero = ({ universityName, tagline, backgroundImage }) => {
                         </svg>
                     </a>
                 </motion.div>
-            </motion.div>
+            </div>
 
             {/* Scroll Indicator */}
             <motion.div
